@@ -1,6 +1,6 @@
 //SPDX-License-Identifier:GPL-3.0
-pragma solidity ^0.8.17;
 
+pragma solidity ^0.8.17;
 contract Automotive{
     //Declaring State Variable
     address public owner; //person who is going to seploy the contract
