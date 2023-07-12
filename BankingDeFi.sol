@@ -13,7 +13,7 @@ contract banking {
     //Basic in every de-fi app to use deposit function
     function deposit() public payable {
         require(msg.value>0,"Deposit amount should be greater than 0");
-        //balance is the mapping in that we are passing the address of the person whomis depositing and updating the Balance
+        //balance is the mapping in that we are passing the address of the person whom is depositing and updating the Balance
         balances[msg.sender] += msg.value;
     }
 
