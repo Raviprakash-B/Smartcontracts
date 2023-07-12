@@ -31,7 +31,7 @@ function buyTicket(uint id,uint quantity) public payable{
     //Checking what is the price of One Ticket
     require(msg.value==(_event.price*quantity), "Ether is not Enough"); 
     require(_event.ticketRemaining >= quantity, "NoT Enough ticket Left");
-    _event.ticketRemaining -= quantity; //Subtract from the remaining tickets from the quantity if someone buys bthe ticket
+    _event.ticketRemaining -= quantity; //Subtract from the remaining tickets from the quantity if someone buys the ticket
     //Enter the information in the nested mapping
     tickets[msg.sender][id] += quantity; //the person who clls the function is buying tickets for particular id with total number of tickets he has bought
 } 
