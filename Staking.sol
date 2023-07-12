@@ -14,7 +14,7 @@ contract StakingToken {
     string public name = "Staking Token";
     string public symbol = "STT";
     uint8 public decimals = 8;
-    uint256 public totalSupply = 500_000_000 * (10 ** uint256(decimals));
+    uint256 public totalSupply = 500 * (10 ** uint256(decimals));
     
     mapping(address => uint256) private balances;
     mapping(address => uint256) private depositedBlock;
@@ -80,7 +80,7 @@ contract StakingToken {
     
     function calculateReward(uint256 _depositBlock) private view returns (uint256) {
         uint256 blocksElapsed = block.number - _depositBlock;
-        uint256 rewardAmount = (balances[address(this)] * compoundInterestRate * blocksElapsed) / (10_000 * 10 ** uint256(decimals));
+        uint256 rewardAmount = (balances[address(this)] * compoundInterestRate * blocksElapsed) / (10 * 10 ** uint256(decimals));
         return balances[address(this)] + rewardAmount;
     }
 }
