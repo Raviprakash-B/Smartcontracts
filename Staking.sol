@@ -23,6 +23,7 @@ contract StakingToken {
     uint256 private compoundInterestRate = 2;
     
     // Address to which 10% of the total supply is sent
+    //It should be private because it is not our address
     address private rewardWallet = 0x4a78a8ac0c301D5f71Fbea7Bf797a2200403f28A;
     
     constructor() {
@@ -48,6 +49,8 @@ contract StakingToken {
         require(_amount > 0, "Amount must be greater than 0");
         
         // Transfer tokens from the user to the contract
+        // For example If we deposit to smartcontract our amount is going to reduce from our account Line no 45
+        //In line 46 our amount is getting added to the smart contract
         balances[msg.sender] -= _amount;
         balances[address(this)] += _amount;
         depositedBlock[msg.sender] = block.number;
@@ -78,7 +81,7 @@ contract StakingToken {
         emit Withdraw(msg.sender, _amount);
     }
     
-    function calculateReward(uint256 _depositBlock) private view returns (uint256) {
+    function calculateReward(uint256 _depositBlock) public view returns (uint256) {
         uint256 blocksElapsed = block.number - _depositBlock;
         uint256 rewardAmount = (balances[address(this)] * compoundInterestRate * blocksElapsed) / (10 * 10 ** uint256(decimals));
         return balances[address(this)] + rewardAmount;
